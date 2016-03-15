@@ -9,6 +9,8 @@ RSpec.feature "User Entry", :type => :feature do
     fill_in "user_2", :with => user2
     click_button "Submit"
 
-    expect(page).to have_content("#{user1} vs #{user2}")
+    within("//div[@class='heading']") do
+      expect(page).to have_content("#{user1} vs #{user2}")
+    end
   end
 end

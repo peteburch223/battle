@@ -2,6 +2,7 @@ require 'sinatra/base'
 require 'sinatra'
 
 class Battle < Sinatra::Base
+  MAX_HP = 60
 
   enable :sessions
 
@@ -18,6 +19,7 @@ class Battle < Sinatra::Base
   get '/play' do
     @user_1 = session[:user_1]
     @user_2 = session[:user_2]
+    @user_2_hp = MAX_HP
     erb(:play)
   end
 
