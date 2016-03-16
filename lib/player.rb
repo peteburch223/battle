@@ -11,10 +11,6 @@ class Player
     @hp = hp
   end
 
-  def attack(opponent)
-    opponent.sustain_damage
-  end
-
   def sustain_damage
     @hp -= DAMAGE
   end

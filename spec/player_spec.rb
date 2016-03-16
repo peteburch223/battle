@@ -20,9 +20,9 @@ describe Player do
     end
   end
 
-  describe "#attack" do
-    it "reduces opponent's hit points" do
-      expect{player.attack(opponent)}.to change{opponent.hp}.by -damage
+  describe "#sustain_damage" do
+    it "reduces its own hp by 'damage'" do
+      expect{ player.sustain_damage }.to change{ player.hp }.by -damage
     end
   end
 end
