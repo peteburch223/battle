@@ -1,13 +1,13 @@
 RSpec.feature "User Entry", :type => :feature do
 
-  let(:user1) { "test user 1"}
-  let(:user2) { "test user 2"}
+  let(:player1) { double:Player, name: "test user 1"}
+  let(:player2) { double:Player, name: "test user 2"}
   scenario "Users enter names and page displays the names" do
 
-    sign_in_and_play(user1, user2)
+    sign_in_and_play(player1, player2)
 
     within("//div[@class='heading']") do
-      expect(page).to have_content("#{user1} vs #{user2}")
+      expect(page).to have_content("#{player1.name} vs #{player2.name}")
     end
   end
 end
