@@ -1,9 +1,22 @@
 class Player
 
-  attr_reader :name
+  MAX_HP = 60
+  DAMAGE = 10
 
-  def initialize(name)
+  attr_reader :name
+  attr_reader :hp
+
+  def initialize(name:, hp:MAX_HP)
     @name = name
+    @hp = hp
+  end
+
+  def attack(opponent)
+    opponent.sustain_damage
+  end
+
+  def sustain_damage
+    @hp -= DAMAGE
   end
 
 end
