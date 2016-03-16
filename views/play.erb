@@ -8,4 +8,11 @@
     <progress max="<%=Battle::MAX_HP%>" value="<%= @user_2_hp %>"></progress>
     <p><%=@user_2%> hitpoints: <%=@user_2_hp%></p>
   </div>
+  <div class="buttons">
+    <form action="/attack">
+      <input type="submit" value="Attack"/>
+    </form>
+  </div>
+
+
 </body>
