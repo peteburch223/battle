@@ -1,5 +1,6 @@
 require 'sinatra/base'
 require 'sinatra'
+require './lib/player'
 
 class Battle < Sinatra::Base
   MAX_HP = 60
@@ -11,21 +12,21 @@ class Battle < Sinatra::Base
   end
 
   post '/names' do
-    session[:user_1] = params[:user_1]
-    session[:user_2] = params[:user_2]
+    $user_1 = Player.new(params[:user_1])
+    $user_2 = Player.new(params[:user_2])
     redirect '/play'
   end
 
   get '/play' do
-    @user_1 = session[:user_1]
-    @user_2 = session[:user_2]
+    @user_1 = $user_1
+    @user_2 = $user_2
     @user_2_hp = MAX_HP
     erb(:play)
   end
 
   get '/attack' do
-    @user_1 = session[:user_1]
-    @user_2 = session[:user_2]
+    @user_1 = $user_1
+    @user_2 = $user_2
     erb(:attack)
   end
 
