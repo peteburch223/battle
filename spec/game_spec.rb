@@ -1,8 +1,8 @@
 require 'game'
 
 describe Game do
-  let(:player1){double :Player}
-  let(:player2){double :Player}
+  let(:player1){double :Player, name: "Me"}
+  let(:player2){double :Player, name: "You"}
 
   subject(:game){ described_class.new(player1: player1, player2:player2) }
   let(:player){ double :Player}
@@ -10,13 +10,21 @@ describe Game do
 
   describe "#initialize" do
     it {expect(game.player1).to eq player1}
-    it {expect(game.player2).to eq player2}  
+    it {expect(game.player2).to eq player2}
+    it {expect(game.now_playing).to eq player1}
   end
 
   describe "#attack" do
     it "tells a player to sustain damage" do
-      expect(player).to receive(:sustain_damage)
-      game.attack(player)
+      expect(player2).to receive(:sustain_damage)
+      game.attack
+    end
+  end
+
+  describe "#switch" do
+    it "toggles between player turns" do
+      game.switch
+      expect(game.now_playing).to eq player2
     end
   end
 

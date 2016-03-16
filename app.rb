@@ -1,6 +1,7 @@
 require 'sinatra/base'
 require 'sinatra'
 require './lib/player'
+require './lib/game'
 
 class Battle < Sinatra::Base
   MAX_HP = 60
@@ -25,10 +26,7 @@ class Battle < Sinatra::Base
 
   get '/attack' do
     @game = $game
-    p @game.player1
-    p @game.player2
-    @game.attack(@game.player2)
-    p @game.player2.hp
+    @game.attack
     erb(:attack)
   end
 

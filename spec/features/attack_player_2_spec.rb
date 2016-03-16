@@ -4,7 +4,7 @@ RSpec.feature "Attack button: #22", :type => :feature do
   let(:player2) { double:Player, name: "test user 2", hp: Player::MAX_HP, sustain_damage: nil }
 
   before (:each) do
-    sign_in_and_play(player1, player2)
+    sign_in_and_play(player1.name, player2.name)
     visit "/play"
   end
 
