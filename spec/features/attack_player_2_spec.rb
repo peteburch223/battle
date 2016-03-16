@@ -1,9 +1,7 @@
 RSpec.feature "Attack button: #22", :type => :feature do
 
-  let(:player1) { "test user 1"}
-  let(:player2) { "test user 2"}
-  let(:player1_hp) { Player::MAX_HP}
-  let(:player2_hp) { Player::MAX_HP}
+  let(:player1) { double:Player, name: "test user 1", hp: Player::MAX_HP, sustain_damage: nil }
+  let(:player2) { double:Player, name: "test user 2", hp: Player::MAX_HP, sustain_damage: nil }
 
   before (:each) do
     sign_in_and_play(player1, player2)
@@ -16,7 +14,7 @@ RSpec.feature "Attack button: #22", :type => :feature do
 
   scenario "attacking displays confirmation page with reduced hp" do
     click_button("Attack")
-    expect(page).to have_text("#{player1} (#{player1_hp}) attacked #{player2} (#{player2_hp - Player::DAMAGE})")
+    expect(page).to have_text("#{player1.name} (#{player1.hp}) attacked #{player2.name} (#{player2.hp - Player::DAMAGE})")
   end
 
 

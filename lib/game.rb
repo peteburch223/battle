@@ -9,6 +9,7 @@ class Game
 
 
   def attack(player)
+    p player
     player.sustain_damage
   end
 

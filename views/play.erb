@@ -2,11 +2,11 @@
 
 <body>
   <div class="heading">
-    <h1> <%= @player1.name %> vs  <%= @player2.name %></h1>
+    <h1> <%= @game.player1.name %> vs  <%= @game.player2.name %></h1>
   </div>
   <div class="player2_hp">
-    <progress max="<%=Battle::MAX_HP%>" value="<%= @player2.hp %>"></progress>
-    <p><%=@player2.name%> hitpoints: <%=@player2.hp%></p>
+    <progress max="<%=Battle::MAX_HP%>" value="<%= @game.player2.hp %>"></progress>
+    <p><%=@game.player2.name%> hitpoints: <%=@game.player2.hp%></p>
   </div>
   <div class="buttons">
     <form action="/attack">
