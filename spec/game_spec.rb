@@ -17,7 +17,7 @@ describe Game do
   describe "#attack" do
     it "tells a player to sustain damage" do
       expect(player2).to receive(:sustain_damage)
-      game.attack
+      game.attack(player2)
     end
   end
 
@@ -26,6 +26,10 @@ describe Game do
       game.switch
       expect(game.now_playing).to eq player2
     end
+    it "toggles repeatedly between player turns" do
+      game.switch
+      game.switch
+      expect(game.now_playing).to eq player1
+    end
   end
-
 end

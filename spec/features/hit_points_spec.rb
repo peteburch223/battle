@@ -20,4 +20,17 @@ RSpec.feature "Viewing hit points: #20", :type => :feature do
     end
   end
 
+  scenario "Game displays user 1 hit points as text" do
+    within("//div[@class='player1_hp']") do
+      expect(page).to have_content("#{player1.name} hitpoints: #{Battle::MAX_HP}")
+    end
+  end
+
+  scenario "Game displays user 1 hit points as progress bar" do
+    within("//div[@class='player1_hp']") do
+      expect(page.has_xpath?("//progress[@max='#{Battle::MAX_HP}'][@value='#{Battle::MAX_HP}']"))
+    end
+  end
+
+
 end

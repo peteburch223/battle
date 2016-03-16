@@ -1,2 +1,4 @@
-<h1><%=@game.player1.name%> (<%=@game.player1.hp%>) attacked <%=@game.player2.name%> (<%=@game.player2.hp%>)</h1>
-<a href="/play">Back to Battle!</a>
+<h1><%=@game.now_playing.name%> attacked <%=@game.opponent.name%></h1>
+<form action ="/switch" method="post">
+    <input type="submit" value="Back to Battle!"/>
+</form>

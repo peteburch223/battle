@@ -12,9 +12,15 @@ RSpec.feature "Attack button: #22", :type => :feature do
       expect(page).to have_button("Attack")
   end
 
-  scenario "attacking displays confirmation page with reduced hp" do
+  scenario "attack confirmation - player 1" do
     click_button("Attack")
-    expect(page).to have_text("#{player1.name} (#{player1.hp}) attacked #{player2.name} (#{player2.hp - Player::DAMAGE})")
+    expect(page).to have_text("#{player1.name} attacked #{player2.name}")
+  end
+  scenario "attack confirmation - player 2" do
+    click_button("Attack")
+    click_button("Back to Battle!")
+    click_button("Attack")
+    expect(page).to have_text("#{player2.name} attacked #{player1.name}")
   end
 
 

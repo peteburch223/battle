@@ -14,8 +14,18 @@ RSpec.feature "Switching turns - #27", :type => :feature do
 
   scenario "attacking switches player" do
     click_button("Attack")
-    click_link("Back to Battle!")
+    click_button("Back to Battle!")
     expect(page).to have_content("#{player2}'s turn!")
+    expect(page).not_to have_content("#{player1}'s turn!")
   end
 
+  scenario "attacking repeatedly switches player repeatedly" do
+    click_button("Attack")
+    click_button("Back to Battle!")
+    click_button("Attack")
+    click_button("Back to Battle!")
+    expect(page).to have_content("#{player1}'s turn!")
+    expect(page).not_to have_content("#{player2}'s turn!")
+
+  end
 end
