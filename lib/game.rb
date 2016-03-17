@@ -1,5 +1,5 @@
-
 require 'player'
+
 class Game
   MAX_HP = 60
   DAMAGE = 10

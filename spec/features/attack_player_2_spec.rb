@@ -1,7 +1,7 @@
 RSpec.feature "Attack button: #22", :type => :feature do
 
-  let(:player1) { double:Player, name: "test user 1", hp: Player::MAX_HP, sustain_damage: nil }
-  let(:player2) { double:Player, name: "test user 2", hp: Player::MAX_HP, sustain_damage: nil }
+  let(:player1) { double:Player, name: "test user 1", hp: Game::MAX_HP, sustain_damage: nil }
+  let(:player2) { double:Player, name: "test user 2", hp: Game::MAX_HP, sustain_damage: nil }
 
   before (:each) do
     sign_in_and_play(player1.name, player2.name)
