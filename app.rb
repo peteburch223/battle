@@ -15,28 +15,30 @@ class Battle < Sinatra::Base
   post '/names' do
     player1 = params[:player_1]
     player2 = params[:player_2]
-    $game = Game.create(player1_name: player1, player2_name: player2, player_class:Player)
+    Game.create(player1_name: player1, player2_name: player2, player_class:Player)
     redirect '/play'
   end
 
   get '/play' do
-    @game = $game
+    @game = Game.current_game
     erb(:play)
   end
 
   get '/attack' do
-    @game = $game
+    @game = Game.current_game
     @game.attack(@game.opponent)
     @game.opponent.hp==0 ? erb(:lose): erb(:attack)
   end
 
   post '/switch' do
-    $game.switch
+    @game = Game.current_game
+    @game.switch
     redirect '/play'
   end
 
   post '/lose' do
-    $game.restart
+    @game = Game.current_game
+    @game.restart
     redirect '/play'
   end
 

@@ -8,8 +8,17 @@ class Game
   def self.create(player1_name:, player2_name:, player_class:)
     player1 = player_class.new(name:player1_name,hp: MAX_HP, damage: DAMAGE )
     player2 = player_class.new(name:player2_name,hp: MAX_HP, damage: DAMAGE )
-    self.new(player1:player1, player2:player2)
+
+    # self.new(player1:player1, player2:player2)
+
+
+    @instance = self.new(player1:player1, player2:player2)
   end
+
+  def self.current_game
+    @instance
+  end
+
 
   def initialize(player1:, player2:)
     @players = [player1, player2]
