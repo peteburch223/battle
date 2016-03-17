@@ -4,7 +4,7 @@ require './lib/player'
 require './lib/game'
 
 class Battle < Sinatra::Base
-  MAX_HP = 60
+
 
   enable :sessions
 
@@ -13,9 +13,9 @@ class Battle < Sinatra::Base
   end
 
   post '/names' do
-    player1 = Player.new(name:params[:player_1])
-    player2 = Player.new(name:params[:player_2])
-    $game = Game.new(player1:player1, player2:player2)
+    player1 = params[:player_1]
+    player2 = params[:player_2]
+    $game = Game.new(player1: player1, player2: player_2)
     redirect '/play'
   end
 
@@ -27,13 +27,24 @@ class Battle < Sinatra::Base
   get '/attack' do
     @game = $game
     @game.attack(@game.opponent)
-    erb(:attack)
+
+    p @game.now_playing.hp
+    p @game.opponent.hp
+
+    @game.opponent.hp==0 ? erb(:lose): erb(:attack)
+
   end
 
-  post '/switch'do
+  post '/switch' do
     $game.switch
-    redirect '/play'    
+    redirect '/play'
   end
+
+  post '/lose' do
+    $game.restart
+    redirect '/play'
+  end
+
 
   # start the server if ruby file executed directly
   run! if app_file == $0

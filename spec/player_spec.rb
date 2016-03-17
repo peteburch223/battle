@@ -3,10 +3,10 @@ require 'player'
 describe Player do
   let(:name){ "Player1" }
   let(:opponent_name){ "Opponent" }
-  let(:hp){Player::MAX_HP}
-  let(:opponent){described_class.new(name:opponent_name, hp:hp)}
-  let(:damage){Player::DAMAGE}
-  subject(:player){ described_class.new(name: name, hp: hp) }
+  let(:hp){60}
+  let(:opponent){described_class.new(name:opponent_name, hp:hp, damage:damage)}
+  let(:damage){10}
+  subject(:player){ described_class.new(name: name, hp: hp, damage:damage) }
 
   describe "#name" do
     it 'returns its name' do
