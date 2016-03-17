@@ -20,6 +20,13 @@ describe Player do
     end
   end
 
+  describe '#reset_hp' do
+    it 'resets the hitpoints' do
+      player.reset_hp(hp)
+      expect(player.hp).to eq hp
+    end
+  end
+
   describe "#sustain_damage" do
     it "reduces its own hp by 'damage'" do
       expect{ player.sustain_damage }.to change{ player.hp }.by -damage

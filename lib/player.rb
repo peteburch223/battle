@@ -13,4 +13,7 @@ class Player
     @hp -= @damage
   end
 
+  def reset_hp(amount)
+    @hp = amount
+  end
 end
