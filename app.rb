@@ -19,25 +19,25 @@ class Battle < Sinatra::Base
     redirect '/play'
   end
 
-  get '/play' do
+  before do
     @game = Game.current_game
+  end
+
+  get '/play' do
     erb(:play)
   end
 
   get '/attack' do
-    @game = Game.current_game
     @game.attack(@game.opponent)
     @game.opponent.hp==0 ? erb(:lose): erb(:attack)
   end
 
   post '/switch' do
-    @game = Game.current_game
     @game.switch
     redirect '/play'
   end
 
   post '/lose' do
-    @game = Game.current_game
     @game.restart
     redirect '/play'
   end
