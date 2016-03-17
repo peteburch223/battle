@@ -29,7 +29,7 @@ class Battle < Sinatra::Base
 
   get '/attack' do
     @game.attack(@game.opponent)
-    @game.opponent.hp==0 ? erb(:lose): erb(:attack)
+    @game.opponent.hp.zero? ? erb(:lose): erb(:attack)
   end
 
   post '/switch' do
