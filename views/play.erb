@@ -15,8 +15,14 @@
     <p><%=@game.players[1].name%> hitpoints: <%=@game.players[1].hp%></p>
   </div>
   <div class="buttons">
+    <% if @now_playing %>
     <form action="/attack" method="post">
       <input type="submit" value="Attack"/>
     </form>
+    <% end %>
+    <form action="/play" method="get">
+      <input type="submit" value="Refresh"/>
+    </form>
+
   </div>
 </body>

@@ -5,7 +5,6 @@ require './lib/game'
 
 class Battle < Sinatra::Base
 
-
   enable :sessions
 
   get '/' do
@@ -14,9 +13,7 @@ class Battle < Sinatra::Base
 
   post '/names' do
     player1 = params[:player_1]
-    # player2 = params[:player_2]
     session[:me] = player1
-    #p session
 
     if Game.current_game.nil?
       Game.create(player_name: player1, player_class:Player)
@@ -32,11 +29,9 @@ class Battle < Sinatra::Base
     erb(:wait)
   end
 
-
   before do
     @game = Game.current_game
   end
-
 
   post '/check' do
     if @game.players.count == Game::MAX_PLAYERS
@@ -46,19 +41,20 @@ class Battle < Sinatra::Base
     end
   end
 
-
   get '/play' do
-    puts "you got to play"
+    @now_playing = session[:me] == @game.now_playing.name
     erb(:play)
   end
 
   post '/attack' do
-    #p session
-    # identify opponent - player who is not me
     opponent = @game.find_opponent_of(session[:me])
     @game.attack(opponent)
-    #@game.opponent.hp.zero? ? erb(:lose): erb(:attack)
-    redirect '/play'
+    redirect '/attack'
+  end
+
+  get '/attack' do
+    erb(:attack)
+
   end
 
   post '/switch' do
@@ -70,7 +66,6 @@ class Battle < Sinatra::Base
     @game.restart
     redirect '/play'
   end
-
 
   # start the server if ruby file executed directly
   run! if app_file == $0
