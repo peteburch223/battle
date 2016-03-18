@@ -15,6 +15,8 @@ class Battle < Sinatra::Base
   post '/names' do
     player1 = params[:player_1]
     player2 = params[:player_2]
+    session[:me] = player1
+    #p session
     Game.create(player1_name: player1, player2_name: player2, player_class:Player)
     redirect '/play'
   end
@@ -28,8 +30,12 @@ class Battle < Sinatra::Base
   end
 
   post '/attack' do
+    #p session
+    # identify opponent - player who is not me
+
     @game.attack(@game.opponent)
     @game.opponent.hp.zero? ? erb(:lose): erb(:attack)
+    #redirect '/play'
   end
 
   post '/switch' do

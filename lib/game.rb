@@ -43,6 +43,9 @@ class Game
     set_players
   end
 
+  def find_opponent_of(player_name)
+  end
+
   private
 
   def set_players

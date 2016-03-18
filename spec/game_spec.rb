@@ -54,4 +54,9 @@ describe Game do
       expect(game.now_playing).to eq player1
     end
   end
+
+  describe '#find_opponent' do
+    it { expect(game.find_opponent_of(player1.name)).to eq player2 }
+    it { expect(game.find_opponent_of(player2.name)).to eq player1 }
+  end
 end
