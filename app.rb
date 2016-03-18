@@ -49,12 +49,14 @@ class Battle < Sinatra::Base
   post '/attack' do
     opponent = @game.find_opponent_of(session[:me])
     @game.attack(opponent)
+
+
     redirect '/attack'
   end
 
   get '/attack' do
-    erb(:attack)
-
+    opponent = @game.find_opponent_of(session[:me])
+    opponent.hp.zero? ? erb(:lose): erb(:attack)
   end
 
   post '/switch' do

@@ -1,5 +1,5 @@
 class Game
-  MAX_HP = 60
+  MAX_HP = 20
   DAMAGE = 10
   MAX_PLAYERS = 2
 
