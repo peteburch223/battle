@@ -32,10 +32,10 @@ class Battle < Sinatra::Base
   post '/attack' do
     #p session
     # identify opponent - player who is not me
-
-    @game.attack(@game.opponent)
-    @game.opponent.hp.zero? ? erb(:lose): erb(:attack)
-    #redirect '/play'
+    opponent = @game.find_opponent_of(session[:me])
+    @game.attack(opponent)
+    #@game.opponent.hp.zero? ? erb(:lose): erb(:attack)
+    redirect '/play'
   end
 
   post '/switch' do

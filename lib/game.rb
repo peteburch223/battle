@@ -44,6 +44,7 @@ class Game
   end
 
   def find_opponent_of(player_name)
+    @players.select{|player| return player if player.name != player_name}
   end
 
   private
