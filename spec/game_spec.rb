@@ -39,14 +39,15 @@ describe Game do
 
     describe '#add_player' do
       it 'increases the length of the players array by 1' do
+        Game.reset
         game_class.create(player_name: player1.name, player_class: player_class)
-        expect{ game_class.current_game.add_player(player2.name) }.to change{ game_class.current_game.players.length}.by(1)
+        expect{ game_class.current_game.add_player(player_name: player2.name) }.to change{ game_class.current_game.players.length}.by(1)
       end
 
       it 'finds player 2 in last position in players' do
         game_class.create(player_name: player1.name, player_class: player_class)
         allow(player_class).to receive(:new) { player2}
-        game_class.current_game.add_player(player2.name)
+        game_class.current_game.add_player(player_name: player2.name)
         expect(game_class.current_game.players.last.name).to eq player2.name
       end
     end
@@ -88,7 +89,7 @@ describe Game do
       before :each do
         game_class.create(player_name: player1.name, player_class: player_class)
         allow(player_class).to receive(:new) { player2}
-        game_class.current_game.add_player(player2.name)
+        game_class.current_game.add_player(player_name: player2.name)
       end
 
       describe '#find_opponent' do

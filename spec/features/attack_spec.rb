@@ -25,7 +25,10 @@ RSpec.feature "Attack button: #22", :type => :feature do
   end
 
   scenario "Game displays an attack button" do
+      within("//div[@class='buttons']") do
       expect(page).to have_button("Attack")
+      require 'pry'; binding.pry
+    end
   end
 
   scenario "attack confirmation - player 1", :broken => true do

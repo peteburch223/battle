@@ -10,6 +10,7 @@ RSpec.feature "You lose: #29", :type => :feature do
 
 
   before (:each) do
+    Game.reset
     sign_in_and_play(player1.name, loser.name)
     visit "/play"
     10.times do

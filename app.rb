@@ -48,6 +48,7 @@ class Battle < Sinatra::Base
 
 
   get '/play' do
+    puts "you got to play"
     erb(:play)
   end
 

@@ -4,8 +4,8 @@ RSpec.feature "Viewing hit points: #20", :type => :feature do
   let(:player2) { double:Player, name: "test user 2", hp: Game::MAX_HP }
 
   before (:each) do
-    sign_in_and_play(player1.name, player2.name)
-    visit "/play"
+    Game.reset
+    two_player_sign_in(player1.name, player2.name)
   end
 
   scenario "Game displays user 2 hit points as text" do

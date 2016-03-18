@@ -19,3 +19,15 @@ def in_browser(name)
 
   Capybara.session_name = old_session
 end
+
+def two_player_sign_in(player1_name, player2_name)
+  in_browser(:one) do
+    sign_in_one_player(player1_name)
+  end
+  in_browser(:two) do
+    sign_in_one_player(player2_name)
+  end
+  in_browser(:one) do
+    click_button("Check")
+  end
+end

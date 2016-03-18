@@ -8,6 +8,7 @@ RSpec.feature "Switching turns - #27", :type => :feature do
   let(:player2) { "test user 2" }
 
   before (:each) do
+    Game.reset
     sign_in_and_play(player1, player2)
     visit "/play"
   end
