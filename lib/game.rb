@@ -1,8 +1,9 @@
 class Game
   MAX_HP = 60
   DAMAGE = 10
+  MAX_PLAYERS = 2
 
-  attr_reader :player1, :players, :now_playing, :opponent
+  attr_reader :players, :now_playing, :opponent
 
 
   def self.create(player_name:, player_class:)
@@ -18,17 +19,19 @@ class Game
   def self.player_class
     @player_class
   end
-  
-  def add_player(player_name)
-    player = self.player_class.new(name:player_name,hp: MAX_HP, damage: DAMAGE )
-    @players << player
-  end
-
 
   def initialize(player:)
     @players = []
     @players << player
-    # @player1 = player1
+  end
+
+  def add_player(player_name)
+    player = self.class.player_class.new(name:player_name,hp: MAX_HP, damage: DAMAGE )
+    @players << player
+  end
+
+  def start_game
+    set_players
   end
 
   def attack(player)

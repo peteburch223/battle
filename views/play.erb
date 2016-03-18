@@ -1,15 +1,15 @@
 <body>
   <div class="heading">
-    <h1> <%= @game.player1.name %> vs  <%= @game.player2.name %></h1>
+    <h1> Players: <%= @game.players.each{|player| "#{player.name} "} %></h1>
     <h2> <%= @game.now_playing.name %>'s turn!</h2>
   </div>
   <div class="player1_hp">
-    <progress max="<%=Game::MAX_HP%>" value="<%= @game.player1.hp %>"></progress>
-    <p><%=@game.player1.name%> hitpoints: <%=@game.player1.hp%></p>
+    <progress max="<%=Game::MAX_HP%>" value="<%= @game.players[0].hp %>"></progress>
+    <p><%=@game.players[0].name%> hitpoints: <%=@game.players[0].hp%></p>
   </div>
   <div class="player2_hp">
-    <progress max="<%=Game::MAX_HP%>" value="<%= @game.player2.hp %>"></progress>
-    <p><%=@game.player2.name%> hitpoints: <%=@game.player2.hp%></p>
+    <progress max="<%=Game::MAX_HP%>" value="<%= @game.players[1].hp %>"></progress>
+    <p><%=@game.players[1].name%> hitpoints: <%=@game.players[1].hp%></p>
   </div>
   <div class="buttons">
     <form action="/attack" method="post">

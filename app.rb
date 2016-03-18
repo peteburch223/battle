@@ -17,13 +17,35 @@ class Battle < Sinatra::Base
     # player2 = params[:player_2]
     session[:me] = player1
     #p session
-    Game.create(player1_name: player1, player2_name: player2, player_class:Player)
-    redirect '/play'
+
+    if Game.current_game.nil?
+      Game.create(player_name: player1, player_class:Player)
+    else
+      Game.current_game.add_player(player_name: player1)
+      Game.current_game.start_game
+    end
+    redirect '/wait'
   end
+
+  get '/wait' do
+    @player = session[:me]
+    erb(:wait)
+  end
+
 
   before do
     @game = Game.current_game
   end
+
+
+  post '/check' do
+    if @game.players.count == Game::MAX_PLAYERS
+      redirect '/play'
+    else
+      redirect '/wait'
+    end
+  end
+
 
   get '/play' do
     erb(:play)
