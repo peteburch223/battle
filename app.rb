@@ -27,7 +27,7 @@ class Battle < Sinatra::Base
     erb(:play)
   end
 
-  get '/attack' do
+  post '/attack' do
     @game.attack(@game.opponent)
     @game.opponent.hp.zero? ? erb(:lose): erb(:attack)
   end

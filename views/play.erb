@@ -12,7 +12,7 @@
     <p><%=@game.player2.name%> hitpoints: <%=@game.player2.hp%></p>
   </div>
   <div class="buttons">
-    <form action="/attack">
+    <form action="/attack" method="post">
       <input type="submit" value="Attack"/>
     </form>
   </div>
