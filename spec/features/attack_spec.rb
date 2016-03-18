@@ -12,8 +12,16 @@ RSpec.feature "Attack button: #22", :type => :feature do
   end
 
   before (:each) do
-    sign_in_and_play(player1.name, player2.name)
-    visit "/play"
+    Game.reset
+    in_browser(:one) do
+      sign_in_one_player(player1.name)
+    end
+    in_browser(:two) do
+      sign_in_one_player(player2.name)
+    end
+    in_browser(:one) do
+      click_button("Check")
+    end
   end
 
   scenario "Game displays an attack button" do

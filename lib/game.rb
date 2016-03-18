@@ -16,6 +16,9 @@ class Game
   def self.current_game
     @instance
   end
+  def self.reset
+    @instance = nil
+  end
   def self.player_class
     @player_class
   end
@@ -25,7 +28,7 @@ class Game
     @players << player
   end
 
-  def add_player(player_name)
+  def add_player(player_name:)
     player = self.class.player_class.new(name:player_name,hp: MAX_HP, damage: DAMAGE )
     @players << player
   end

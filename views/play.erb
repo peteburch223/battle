@@ -1,6 +1,9 @@
 <body>
   <div class="heading">
-    <h1> Players: <%= @game.players.each{|player| "#{player.name} "} %></h1>
+    <h1> Players: <% @game.players.each do |player| %>
+      <%= "#{player.name}" %>
+      <% end %>
+  </h1>
     <h2> <%= @game.now_playing.name %>'s turn!</h2>
   </div>
   <div class="player1_hp">
