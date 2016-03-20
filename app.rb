@@ -50,7 +50,6 @@ class Battle < Sinatra::Base
     opponent = @game.find_opponent_of(session[:me])
     @game.attack(opponent)
 
-
     redirect '/attack'
   end
 
